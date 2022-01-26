@@ -1,0 +1,54 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <customer-card [customer_id]="customer_id"></customer-card>
+        </div>
+        <div class="col-md-8 mb-3">
+            <mat-card>
+                <div class="row">
+                    <h2 class="mb-1 text-primary" >Nueva cuenta de ahorro</h2>
+                    <p class="text-muted">Complete la información para abrir una nueva cuenta de ahorro</p>
+                </div>
+                <div class="row" *ngIf="error">
+                    <div class="p-3 mb-2 bg-danger text-white">{{message}}</div>
+                </div>
+                <br>
+                <form #addAccount="ngForm" [formGroup]="form" class="" (ngSubmit)="saveAccount()">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="mb-3 isInvalid">
+                            <label for="name" class="form-label">No. De cuenta</label>
+                            <input type="number" step="1" min="1" formControlName="numeroCuenta" class="form-control" placeholder="Ingrese el número de cuenta" [class.is-invalid] = "formControl['numeroCuenta'].invalid">
+                            <div class="invalid-feedback">
+                                Ingrese el número de cuenta
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 isInvalid">
+                              <label for="name" class="form-label">Saldo inicial</label>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input type="number" min="0" formControlName="saldo"  class="form-control" placeholder="Ingrese el saldo inicial" [class.is-invalid] = "formControl['saldo'].invalid">
+                              </div>
+                              <div class="invalid-feedback">
+                                Ingrese el saldo inicial
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 offset-md-6">
+                          <button type="submit" class="btn btn-primary col-md-12 text-white" [disabled] ="addAccount.invalid || petitionInProgress">
+                            <span *ngIf="!petitionInProgress">Guardar cuenta de ahorro</span>
+                            <span *ngIf="petitionInProgress">Guardando...</span>
+                          </button>
+                        </div>
+                      </div>
+                    
+
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

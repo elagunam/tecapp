@@ -1,0 +1,71 @@
+<div class="container pt-4">
+    <mat-card class="col-md-8 m-auto">
+        <mat-card-content class="ps-5 pe-5 pb-5 pt-3">
+            <div class="row">
+                <h2 class="mb-1 text-muted" >Nuevo cliente</h2>
+                <p class="text-muted">Ingrese la información del cliente para registrarlo</p>
+            </div>
+            <div class="row" *ngIf="error">
+                <div class="p-3 mb-2 bg-danger text-white">{{message}}</div>
+            </div>
+            <br>
+            <form #addCustomer="ngForm" [formGroup]="form" class="" (ngSubmit)="saveCustomer()">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3 isInvalid">
+                        <label for="name" class="form-label">Nombre completo del cliente</label>
+                        <input type="text" formControlName="full_name" class="form-control" placeholder="Ingrese el nombre completo del cliente" [class.is-invalid] = "formControl['full_name'].invalid" maxlength="100">
+                        <div class="invalid-feedback">
+                            Ingrese el nombre completo del cliente
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3 isInvalid">
+                        <label for="name" class="form-label">Dirección del cliente</label>
+                        <textarea formControlName="address" class="form-control" placeholder="Ingrese la dirección del cliente" [class.is-invalid] = "formControl['address'].invalid" maxlength="500"></textarea>
+                        <div class="invalid-feedback">
+                            Ingrese la dirección del cliente
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 isInvalid">
+                          <label for="name" class="form-label">Fecha de nacimiento del cliente</label>
+                          <input type="date"  formControlName="birth" class="form-control" placeholder="Ingrese la fecha de nacimiento del cliente" [class.is-invalid] = "formControl['birth'].invalid">
+                          <div class="invalid-feedback">
+                            Ingrese la fecha de nacimiento del cliente
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="mb-3 isInvalid">
+                          <label for="name" class="form-label">Género del cliente</label>
+                          <select class="form-select form-control" formControlName="gender" [class.is-invalid] = "formControl['gender'].invalid">
+                            <option value="">Seleccione el género</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            Seleccione el género del cliente
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  
+              <div class="row">
+                <div class="col-md-6 offset-md-6">
+                  <button type="submit" class="btn btn-primary col-md-12 text-white" [disabled] ="addCustomer.invalid || petitionInProgress">
+                    <span *ngIf="!petitionInProgress">Guardar cliente</span>
+                    <span *ngIf="petitionInProgress">Guardando...</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

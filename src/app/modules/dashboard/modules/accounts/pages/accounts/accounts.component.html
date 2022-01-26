@@ -1,0 +1,87 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <customer-card [customer_id]="customer_id"></customer-card>
+        </div>
+        <div class="col-md-8 mb-3">
+            <mat-card>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-primary">Cuentas de ahorro</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 offset-md-8">
+                        <a [routerLink]="['/panel/accounts/add/'+customer_id]" class="btn btn-primary text-white">Crear cuenta de ahorro</a>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="petitionInProgress && !error">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-muted text-center">Cargando cuentas...</p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!petitionInProgress && error">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="p-3 mb-2 bg-danger text-white text-center">{{message}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!petitionInProgress && accounts && !error">
+                    <div class="col-md-12 mb-3">
+                        <h3 class="text-success text-center">Cuentas de ahorro:</h3>
+                    </div>
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">No. De cuenta</th>
+                                  <th scope="col">Saldo</th>
+                                  <th scope="col">Estado</th>
+                                  <th scope="col">Acciones</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let account of accounts; let i=index">
+                                  <th scope="row">{{i+1}}</th>
+                                  <td class="text-center">{{account.numeroCuenta}}</td>
+                                  <td class="text-end">{{account.saldo | currency}}</td>
+                                  <td class="text-center" [ngClass]="account.estado == 'Activa' ? 'text-success' : 'text-danger'">{{account.estado}}</td>
+                                  <td class="text-center">
+                                    <button type="button" class="btn btn-success me-2" (click)="makeMovement(account.numeroCuenta, 'Deposito')">Depósito</button>
+                                    <button type="button" class="btn btn-danger" (click)="makeMovement(account.numeroCuenta, 'Retiro')">Retiro</button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<!--<mat-card>
+    
+    
+    <div *ngIf="!petitionInProgress && customer && !error">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-primary">{{customer.full_name}}</h1>
+                <p class="text-muted">
+                  <span> <b>Domicilio:</b> {{customer.address}}</span>  <br>
+                  <span> <b>Edad:</b> {{customer.age}} años</span> <br>
+                  <span> <b>Género:</b> {{customer.gender}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</mat-card>
+-->
+
+

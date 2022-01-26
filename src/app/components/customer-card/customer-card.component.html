@@ -1,0 +1,29 @@
+<mat-card>
+    <div *ngIf="petitionInProgress && !error">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted text-center">Cargando información del cliente...</p>
+            </div>
+        </div>
+        
+    </div>
+    <div *ngIf="!petitionInProgress && error">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="p-3 mb-2 bg-danger text-white text-center">{{message}}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!petitionInProgress && customer && !error">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-primary">{{customer.full_name}}</h1>
+                <p class="text-muted">
+                  <span> <b>Domicilio:</b> {{customer.address}}</span>  <br>
+                  <span> <b>Edad:</b> {{customer.age}} años</span> <br>
+                  <span> <b>Género:</b> {{customer.gender}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</mat-card>

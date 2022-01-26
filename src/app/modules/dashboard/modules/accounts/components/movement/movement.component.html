@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="text-primary">{{formControl['tipo'].value}}</h1>
+        </div>
+    </div>
+    <form #addMovement="ngForm" [formGroup]="form" class="" (ngSubmit)="saveMovement()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3 isInvalid">
+                  <label for="name" class="form-label">Importe del {{formControl['tipo'].value}}</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="number" min="0" formControlName="monto"  class="form-control" placeholder="Ingrese el Importe" [class.is-invalid] = "formControl['monto'].invalid">
+                  </div>
+                  <div class="invalid-feedback">
+                    Ingrese el Importe del {{formControl['tipo'].value}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="name" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <!---->
+                <button type="submit" class="btn btn-primary col-md-12 text-white" [disabled] ="addMovement.invalid || petitionInProgress">
+                  <span *ngIf="!petitionInProgress">Realizar {{formControl['tipo'].value}}</span>
+                  <span *ngIf="petitionInProgress">Guardando...</span>
+                </button>
+              </div>
+        </div>
+        
+        
+
+
+    </form>
+</div>
