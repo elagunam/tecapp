@@ -10,13 +10,15 @@ import { AccountComponent } from './pages/account/account.component';
 import { MovementComponent } from './components/movement/movement.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MovementsComponent } from './components/movements/movements.component';
 
 
 @NgModule({
   declarations: [
     AccountsComponent,
     AccountComponent,
-    MovementComponent
+    MovementComponent,
+    MovementsComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule
   ],
   entryComponents: [
-    MovementComponent
+    MovementComponent,
+    MovementsComponent
   ]
 })
 export class AccountsModule { }

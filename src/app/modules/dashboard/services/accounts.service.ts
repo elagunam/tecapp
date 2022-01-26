@@ -29,10 +29,8 @@ export class AccountsService {
     return this.http.post(environment.operative_api+'transacciones/OcBMnUGvAqVlUOskPph6ZIDpDqj2.json?auth='+token, params);
   }
 
-
-
-  /*searchCustomer(params:any): Observable<any> {
-    params.token = this.dashBoardService.getToken();
-    return this.http.post(environment.customer_api+'customer/search', params);
-  }*/
+  getMovements(): Observable<any>{
+    const token = this.dashBoardService.getToken();
+    return this.http.get(environment.operative_api+'transacciones/OcBMnUGvAqVlUOskPph6ZIDpDqj2.json?auth='+token);
+  }
 }

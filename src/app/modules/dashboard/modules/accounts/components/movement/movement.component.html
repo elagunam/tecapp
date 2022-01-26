@@ -20,7 +20,6 @@
               </div>
               <div class="col-md-6">
                 <label for="name" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <!---->
                 <button type="submit" class="btn btn-primary col-md-12 text-white" [disabled] ="addMovement.invalid || petitionInProgress">
                   <span *ngIf="!petitionInProgress">Realizar {{formControl['tipo'].value}}</span>
                   <span *ngIf="petitionInProgress">Guardando...</span>

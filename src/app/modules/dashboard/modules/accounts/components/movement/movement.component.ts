@@ -48,7 +48,6 @@ export class MovementComponent implements OnInit {
   ngOnInit(): void {
     this.formControl['numeroCuenta'].setValue(this.data.account_number);
     this.formControl['tipo'].setValue(this.data.movement_kind);
-    
   }
 
   getCurrentDay(){
@@ -81,6 +80,7 @@ export class MovementComponent implements OnInit {
         this.dialogRef.close(true);
       },
       error: error => {
+        this.form.enable();
         this.petitionInProgress = false;
         this.error = true;
         this.message = 'No se pudo aplicar el movimiento...';

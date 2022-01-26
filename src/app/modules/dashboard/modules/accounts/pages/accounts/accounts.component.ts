@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountsService } from 'src/app/modules/dashboard/services/accounts.service';
 import { MovementComponent } from '../../components/movement/movement.component';
+import { MovementsComponent } from '../../components/movements/movements.component';
 
 @Component({
   selector: 'app-accounts',
@@ -64,7 +65,6 @@ export class AccountsComponent implements OnInit {
 
   processMovement(account_number: any, movement_kind: any){
     const dialogRef = this.dialog.open(MovementComponent, {
-      width: '80%',
       data: {
         account_number,
         movement_kind
@@ -81,6 +81,25 @@ export class AccountsComponent implements OnInit {
 
   makeMovement(number_account: any, movement_type: any){
     this.processMovement(number_account, movement_type);
+  }
+
+
+  viewMovements(account_number: any){
+    const dialogRef = this.dialog.open(MovementsComponent, {
+      data: {
+        account_number
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+      }
+    });
+
+  }
+
+  openMovements(account_number: any){
+    this.viewMovements(account_number);
   }
 
   
